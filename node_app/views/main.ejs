@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Search Using Solr</title>
+    </head>
+    <body>
+        <h1>Search</h1>
+        <form action="/" method="post">
+            <label for="searchBox">Enter words: </label>
+            <input id="searchBox" type="text" name="searchField" value="<%= searchFieldValue%>">
+            <input type="submit" value="search">
+            <!-- <button id="searchBtn" onclick="getData()">Search</button> -->
+            <br>
+            <input type="radio" id="algoChoice1" name="searchAlgo" value="default" 
+            <%if(isDefaultAlgo){%>
+                <%="checked"%>
+            <%}%>>
+            <label for="algoChoice1">Lucene Algo</label>
+            <input type="radio" id="algoChoice2" name="searchAlgo" value="pageRank" 
+            <%if(isPageRankAlgo){%>
+                <%="checked"%>
+            <%}%>>
+            <label for="algoChoice2">Page Rank Algo</label>
+        </form>
+        
+        <% if(haveData) { %>
+            <h2><%= "Keywords: " + name %></h2>
+            <% for (let i = 0; i < topList.length; i++) { %>
+                <p>title: <a href="<%= urlList[i] %>", target="_blank"><%= topList[i].title %></a></p>
+                <p>url: <a href="<%= urlList[i] %>", target="_blank"><%= urlList[i] %></a></p>
+                <p><%= "id: " + topList[i].id %></p>
+                <p><%= "description: " + desList[i] %></p>
+                <br>
+            <% } %>
+        <% } %>
+        
+    </body>
+</html>
